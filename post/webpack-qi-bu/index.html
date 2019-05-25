@@ -1,138 +1,191 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>webpack起步 | 无颜只月</title>
 <meta name="description" content="&lt;h2 style=&#39;color: pink;&#39;&gt;温故而知新&lt;/h2&gt;">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558749632723">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558749050429">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://wuyanzhiyue.github.io/styles/main.css">
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://wuyanzhiyue.github.io">
-        <img class="avatar" src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558749050429" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://wuyanzhiyue.github.io">
-        <h1 class="site-title">无颜只月</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://wuyanzhiyue.github.io">无颜只月</a></h3>
   </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">webpack起步</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-05-24</span>
+          <li>
             
-          </div>
-          <div class="post-content">
-            <h3 id="webpack定义">webpack定义</h3>
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>webpack起步</h1>
+            <p class="article-meta">
+              2019-05-24
+              
+            </p>
+            
+            <div class="post-content">
+              <h3 id="webpack定义">webpack定义</h3>
 <p>webpack 是一个现代 JavaScript 应用程序的静态模块打包器</p>
 <h3 id="项目起步">项目起步</h3>
 <p>npm 初始化   <code>npm init</code>       初始化webpack环境  <code>npm install webpack webpack-cli -D</code>    <strong>准备好配置文件webpack.config.log</strong>，为了运行方便将package.json 中的scripts 标签设置为 <code>&quot;bundle&quot;: &quot;webpack&quot;</code> ，打包时直接运行npm run bundle 就可以了。</p>
 <h3 id="webpackconfiglog-出入口配置">webpack.config.log 出入口配置</h3>
-<p>在<code>module.exports</code>中配置  将<code>mode</code>设置为development可开启生产模式，打包后的代码不会被压缩; 在<code>entry</code>中设置打包入口，通常是以键值对的的方式设置，在<code>output</code>中设置打包出口，常用参数配置有<code>filename</code>设置打包后文件名称，
-<code>path: path.resolve(__dirname, 'dist')</code> path则是设置打包后文件放置哪个文件夹（<em>其中path是nodejs中的模块</em>），__dirname 总是指向被执行 js 文件的绝对路径</p>
+<p>在<code>module.exports</code>中配置  将<code>mode</code>设置为development可开启生产模式，打包后的代码不会被压缩; 在<code>entry</code>中设置打包入口，通常是以键值对的的方式设置，在<code>output</code>中设置打包出口，常用参数配置有<code>filename</code>设置打包后文件名称(在其中可设置具体的转义符 方便输出)，<code>publicpath</code>是设置打包后js文件引入html中必带的url前缀
+<code>path: path.resolve(__dirname, 'dist')</code> path则是设置打包后文件放置哪个文件夹（<em>其中path是nodejs中的模块</em>），__dirname 总是指向被执行 js 文件的绝对路径<br>
+贴出比较简单的示例代码</p>
+<pre><code>module.exports = {
+  mode: 'development',
+	entry: {
+    main: './src/index.js',
+    sub: './src/index.js'
+  },
+		output: {
+		filename: '[name].js',
+		path: path.resolve(__dirname, 'dist')
+	}
+</code></pre>
 
-          </div>
+            </div>
+          </article>
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://wuyanzhiyue.github.io/post/my-first-note">
-              <h3 class="post-title">
-                下一篇：my first note
-              </h3>
-            </a>
-          </div>
+        <div class="paper" data-aos="fade-in">
           
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://wuyanzhiyue.github.io/post/my-first-note">
+                <h3 class="post-title">
+                  my first note
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
       </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558749632723" class="no-responsive avatar">
+    <div class="text-muted"><h2 style='color: pink;'>温故而知新</h2></div>
+    <div class="social-container">
       
-
-      <div class="site-footer">
-  <div class="slogan"><h2 style='color: pink;'>温故而知新</h2></div>
-  <div class="social-container">
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+          <a href="https://www.zhihu.com/people/wu-yan-zhi-yue-31/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
       
-    
+        
       
-    
+    </div>
   </div>
-  无颜只月
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://wuyanzhiyue.github.io/post/webpack-qi-bu">webpack起步</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://wuyanzhiyue.github.io/post/my-first-note">my first note</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+    </div>
+  </div>
+  <div class="paper">
+    无颜只月
+  </div>
 </div>
 
 
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 
