@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558747540849">
+<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558748545798">
 <link rel="stylesheet" href="https://wuyanzhiyue.github.io/styles/main.css">
 
 
@@ -29,7 +29,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://wuyanzhiyue.github.io">
-        <img class="avatar" src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558747540849" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558748545798" alt="" width="32px" height="32px">
       </a>
       <a href="https://wuyanzhiyue.github.io">
         <h1 class="site-title">无颜只月</h1>
@@ -82,7 +82,10 @@
             <h3 id="webpack定义">webpack定义</h3>
 <p>webpack 是一个现代 JavaScript 应用程序的静态模块打包器</p>
 <h3 id="项目起步">项目起步</h3>
-<p>npm 初始化   <code>npm init</code>       初始化webpack环境  <code>npm install webpack webpack-cli -D</code>    准备好配置文件webpack.config.log   为了运行方便将package.json 中的scripts 标签 <code>&quot;bundle&quot;: &quot;webpack&quot;</code> 打包时直接运行npm run bundle 就可以了</p>
+<p>npm 初始化   <code>npm init</code>       初始化webpack环境  <code>npm install webpack webpack-cli -D</code>    <strong>准备好配置文件webpack.config.log</strong>，为了运行方便将package.json 中的scripts 标签设置为 <code>&quot;bundle&quot;: &quot;webpack&quot;</code> ，打包时直接运行npm run bundle 就可以了。</p>
+<h3 id="webpackconfiglog-出入口配置">webpack.config.log 出入口配置</h3>
+<p>在<code>module.exports</code>中配置  将<code>mode</code>设置为development可开启生产模式，打包后的代码不会被压缩; 在<code>entry</code>中设置打包入口，通常是以键值对的的方式设置，在<code>output</code>中设置打包出口，常用参数配置有<code>filename</code>设置打包后文件名称，
+<code>path: path.resolve(__dirname, 'dist')</code> path则是设置打包后文件放置哪个文件夹（<em>其中path是nodejs中的模块</em>），__dirname 总是指向被执行 js 文件的绝对路径</p>
 
           </div>
         </div>
