@@ -7,7 +7,7 @@
 <meta name="description" content="&lt;h2 style=&#39;color: pink;&#39;&gt;温故而知新&lt;/h2&gt;">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558752591799">
+<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558869738589">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -74,9 +74,9 @@
           <article class="article">
             <h1>webpack起步</h1>
             <p class="article-meta">
-              2019-05-24
+              2019-05-26
               
-                <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge warning">
+                <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge secondary">
                   web pack
                 </a>
               
@@ -103,6 +103,51 @@
 		}
 	}
 </code></pre>
+<h3 id="loader">loader</h3>
+<p>loader是告诉webpack如何处理文件的，下面介绍如何使用一些常用的loader <br>
+使用loader在module下配置，设置rules为数组，这样就可以配置多个loader(对象)了，rules下对象设置test和use,<br>
+<code>url-loader</code>:处理图片文件 ，设置成base64的格式，可以设置limit限制大小（超出则保留图片）,<br>
+<code>style-loader,cssloader</code> 处理css文件,<br>
+<code>sass-loader</code> 处理scss文件 ，为了解决scss中引入另外的scss 可在<code>css-loader</code>中设置options为importLoaders为2,<br>
+<code>file-loader</code> 处理字体文件，<br>
+下面贴出示例代码<br></p>
+<pre><code>module: {
+    rules: [{
+      test: /\.(jpg|png|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          name: '[name]_[hash].[ext]',
+          outputPath: 'images/',
+          limit: 10240
+        }
+      }
+    },{
+      test: /\.scss$/,
+      use: ['style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2
+              }
+            },
+            'sass-loader',
+            'postcss-loader'
+          ]
+    },{
+      test: /\.css$/,
+      use: ['style-loader',
+            'css-loader',
+            'postcss-loader'
+          ]
+    },{
+      test: /\.(eot|ttf|svg|woff)$/,
+      use: {
+        loader: 'file-loader'
+      }
+    }]
+  }
+</code></pre>
 
             </div>
           </article>
@@ -126,7 +171,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558752591799" class="no-responsive avatar">
+    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558869738589" class="no-responsive avatar">
     <div class="text-muted"><h2 style='color: pink;'>温故而知新</h2></div>
     <div class="social-container">
       
