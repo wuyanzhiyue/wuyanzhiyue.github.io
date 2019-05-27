@@ -7,7 +7,7 @@
 <meta name="description" content="&lt;h2 style=&#39;color: pink;&#39;&gt;温故而知新&lt;/h2&gt;">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558869738589">
+<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1558953128310">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -148,6 +148,18 @@
     }]
   }
 </code></pre>
+<h3 id="plugins">plugins</h3>
+<p>plugins是插件的的意思，webpack借助plugins能完成许多功能<br></p>
+<pre><code> plugins: [ 
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+    template: 'src/index.html'
+  }),new webpack.HotModuleReplacementPlugin()],
+</code></pre>
+<p>CleanWebpackPlugin()在打包前清除打包后的dist目录<br>
+HtmlWebpackPlugin()在打包后生成HTML模板<br>
+webpack.HotModuleReplacementPlugin()是热模块更新，当文件改动了自动打包,（配合devServer使用）<br>
+注意js文件改动时要写if (module.hot)，才会接受热更新（在vue-cli可不写，其内部配置好了）</p>
 
             </div>
           </article>
@@ -171,7 +183,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558869738589" class="no-responsive avatar">
+    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1558953128310" class="no-responsive avatar">
     <div class="text-muted"><h2 style='color: pink;'>温故而知新</h2></div>
     <div class="social-container">
       
@@ -200,6 +212,12 @@
         
           
             <li>
+              <a href="https://wuyanzhiyue.github.io/post/css-zhi-border">css之border</a>
+            </li>
+          
+        
+          
+            <li>
               <a href="https://wuyanzhiyue.github.io/post/webpack-qi-bu">webpack起步</a>
             </li>
           
@@ -219,7 +237,7 @@
     </div>
     <div class="row">
       
-        <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge secondary">
+        <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge ">
           web pack
         </a>
       
