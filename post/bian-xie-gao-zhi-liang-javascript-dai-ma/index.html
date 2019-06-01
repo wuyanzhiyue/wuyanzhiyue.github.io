@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>编写高质量JavaScript代码 | 无颜只月</title>
+<meta name="description" content="&lt;h2 style=&#39;color: pink;&#39;&gt;温故而知新&lt;/h2&gt;">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1559388466859">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://wuyanzhiyue.github.io/styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://wuyanzhiyue.github.io">无颜只月</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>编写高质量JavaScript代码</h1>
+            <p class="article-meta">
+              2019-06-01
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="最小全局变量">最小全局变量</h2>
+<p>JavaScript通过函数管理作用域。在函数内部声明的变量只在这个函数内部，函数外面不可用。另一方面，全局变量就是在任何函数外面声明的或是未声明直接简单使用的。<br></p>
+<p>每个JavaScript环境有一个全局对象，当你在任意的函数外面使用this的时候可以访问到。你创建的每一个全部变量都成了这个全局对象的属 性。在浏览器中，方便起见，该全局对象有个附加属性叫做window，此window(通常)指向该全局对象本身。</p>
+<pre><code>myglobal = &quot;hello&quot;; // 不推荐写法
+console.log(myglobal); // &quot;hello&quot;
+console.log(window.myglobal); // &quot;hello&quot;
+console.log(window[&quot;myglobal&quot;]); // &quot;hello&quot;
+console.log(this.myglobal); // &quot;hello&quot;
+</code></pre>
+<h2 id="避免全局变量">避免全局变量</h2>
+<p>注意要避免全局变量，特别是隐式全局变量，反例如下<br></p>
+<pre><code>function sum(x, y) {
+   // 不推荐写法: 隐式全局变量 
+   result = x + y;
+   return result;
+}
+
+
+function foo() {
+   var a = b = 0;
+   // ...
+}
+</code></pre>
+<p>隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过delete操作符删除的，而变量是不能的</p>
+<h2 id="访问全局对象">访问全局对象</h2>
+<p>在浏览器中，全局对象可以通过window属性在代码的任何位置访问<br>
+同样，也能通过iife和闭包访问<br></p>
+<pre><code>var global = (function () {
+   return this;
+}());
+</code></pre>
+<h2 id="单var形式">单var形式</h2>
+<p>在函数顶部使用单var语句是比较有用的一种形式<br></p>
+<pre><code>function func() {
+   var a = 1,
+       b = 2,
+       sum = a + b,
+       myobject = {},
+       i,
+       j;
+   // function body...
+}
+
+
+function updateElement() {
+   var el = document.getElementById(&quot;result&quot;),
+       style = el.style;
+   // 使用el和style干点其他什么事...
+}
+</code></pre>
+<h2 id="预解析var散布的问题">预解析：var散布的问题</h2>
+<p>不采用单var形式声明可能会出现不可预期的后果<br></p>
+<pre><code>myname = &quot;global&quot;; // 全局变量
+function func() {
+    alert(myname); // &quot;undefined&quot;
+    var myname = &quot;local&quot;;
+    alert(myname); // &quot;local&quot;
+}
+func();
+</code></pre>
+<p>在这个函数中，所有的变量声明当被悬置到函数的顶部了，因此第一个myname访问的是undefined。</p>
+<h2 id="for循环">for循环</h2>
+<p>在for循环中，你可以循环取得数组或是数组类似对象的值，譬如arguments和HTMLCollection对象。<br>
+在访问时，注意要缓存长度,避免性能消耗</p>
+<pre><code>for (var i = 0, max = myarray.length; i &lt; max; i++) {
+   // 使用myarray[i]做点什么
+}
+</code></pre>
+<h2 id="for-in循环">for-in循环</h2>
+<p>for-in循环应该用在非数组对象的遍历上，使用for-in进行循环也被称为“枚举”。<br></p>
+<p>从技术上讲，你可以使用for-in循环数组（因为JavaScript中数组也是对象），但这是不推荐的。因为如果数组对象已被自定义的功能增强，就可能发生逻辑错误。另外，在for-in中，属性列表的顺序是不能保证的。所以最好数组使用正常的for循环，对象使用for-in循环。<br></p>
+<p>有个很重要的hasOwnProperty()方法，当遍历对象属性的时候可以过滤掉从原型链上下来的属性。</p>
+<pre><code>var man = {
+   hands: 2,
+   legs: 2,
+   heads: 1
+};
+
+// 在代码的某个地方
+// 一个方法添加给了所有对象
+if (typeof Object.prototype.clone === &quot;undefined&quot;) {
+   Object.prototype.clone = function () {};
+}
+for (var i in man) {
+   if (man.hasOwnProperty(i)) { // 过滤
+      console.log(i, &quot;:&quot;, man[i]);
+   }
+}
+/* 控制台显示结果
+hands : 2
+legs : 2
+heads : 1*/
+</code></pre>
+<p>为了避免滥用原型造成的麻烦，不增加内置原型是最好的</p>
+<h2 id="避免隐式类型转换">避免隐式类型转换</h2>
+<pre><code>var zero = 0;
+if (zero === false) {
+   // 不执行，因为zero为0, 而不是false
+}
+
+// 反面示例
+if (zero == false) {
+   // 执行了...
+}
+</code></pre>
+<p>在判断时，最好始终使用===和!==操作符。</p>
+<h2 id="命名风格">命名风格</h2>
+<p><strong>以大写字母写构造函数</strong><br>
+命名构造函数时首字母大写具有暗示作用，使用小写命名的函数和方法不应该使用new调用<br>
+<strong>分隔单词</strong><br>
+对于构造函数，可以使用大驼峰式命名法(upper camel case)，如MyConstructor()。对于函数和方法名称，你可以使用小驼峰式命名法(lower camel case)，像是myFunction(), calculateArea()和getFirstName()。<br>
+变量也可采用所有单词小写以下划线连接，例如，first_name, favorite_bands<br>
+在变量或函数前加下划线，通常表示私有</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://wuyanzhiyue.github.io/post/css-zhi-border">
+                <h3 class="post-title">
+                  css之border
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1559388466859" class="no-responsive avatar">
+    <div class="text-muted"><h2 style='color: pink;'>温故而知新</h2></div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://www.zhihu.com/people/wu-yan-zhi-yue-31/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://wuyanzhiyue.github.io/post/bian-xie-gao-zhi-liang-javascript-dai-ma">编写高质量JavaScript代码</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://wuyanzhiyue.github.io/post/css-zhi-border">css之border</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://wuyanzhiyue.github.io/post/webpack-qi-bu">webpack起步</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://wuyanzhiyue.github.io/post/my-first-note">my first note</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge secondary">
+          web pack
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    <p style="font-family: '宋体';color: deeppink;font-size: 12px;">你要做一个不动声色的大人了。不准情绪化，不准偷偷想念，不准回头看。
+			去过自己另外的生活。你要听话，不是所有的鱼都会生活在同一片海里。</p>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>
