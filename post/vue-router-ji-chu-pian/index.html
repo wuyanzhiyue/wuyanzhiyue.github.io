@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>my first note | 无颜只月</title>
+<title>Vue-router基础篇 | 无颜只月</title>
 <meta name="description" content="&lt;h2 style=&#39;color: pink;&#39;&gt;温故而知新&lt;/h2&gt;">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -72,20 +72,41 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>my first note</h1>
+            <h1>Vue-router基础篇</h1>
             <p class="article-meta">
-              2019-05-24
+              2019-09-14
               
             </p>
             
             <div class="post-content">
-              <h1 id="this-is-my-first-day-to-create-my-private-note">this is my first day to create my private  note</h1>
-<p><em>我希望坚持创作</em></p>
+              <p>模块化路由： 将路由文件和主文件解耦，便于维护
+router-link组件：在h5页面渲染出的是a标签，可用to属性指定跳转的页面。
+router-view组件：若使用了该组件，在该页面上的router-link跳转的页面都会在该页面上渲染。
+路由列表：一个路由列表是一个数组，每一个路由配置项是一个对象。
+懒加载： 在路由配置项中component使用函数返回import导入的组件，这样可使相关组件在访问时才会加载。
+动态路由匹配：在路由配置项中的path中使用:xxx ，在访问相应路径时，可匹配到对应的动态参数：通过route.params.xxx访问
+嵌套路由：在一个路由配置项中可使用children属性（为一个数组）来创造嵌套路由（又是一个单独的路由列表），注意在父路由上使用router-view组件。
+命名路由： 路由配置项中有name属性，可通过v-bind 属性将to绑定对象，直接跳转相应路由。
+命名视图： 在相应的页面上使用router-view组件，可指定name属性，然后在路由配置项中使用components配置默认的router-view， 或者其他的命名router-view，这样在访问相应路径时可进行相应的视图匹配。
+重定向：在路由配置项中使用redirect方法（传入to对象）返回相应的路径，这样可以在访问path配置的路径时可以重定向到相应的路径。
+别名：在路由配置项中使用alias定义别名，这样在访问相应的别名路径时也能跳转到相应的组件。
+编程式导航：使用router访问相应的方法可以进行编程式导航，back方法可跳转到上一页，push方法可以跳转到指定的页面，replace方法替换到相应的页面，这些方法都可以放入对象，在其中配置query，params参数,方便跳转直接在url中显示相应的数据，（注意使用对象时，不能使用path，使用name进行跳转）</p>
 
             </div>
           </article>
         </div>
         <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://wuyanzhiyue.github.io/post/1bian-xie-gao-zhi-liang-javascript-dai-ma">
+                <h3 class="post-title">
+                  1.编写高质量JavaScript代码
+                </h3>
+              </a>
+            </div>
           
         </div>
         
