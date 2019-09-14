@@ -7,7 +7,7 @@
 <meta name="description" content="&lt;h2 style=&#39;color: pink;&#39;&gt;温故而知新&lt;/h2&gt;">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1568432099325">
+<link rel="shortcut icon" href="https://wuyanzhiyue.github.io/favicon.ico?v=1568432560390">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -79,16 +79,21 @@
             </p>
             
             <div class="post-content">
-              <p>动态路由传参：在路由配置中，设置props属性为true，在相关组件中设置props接收动态参数，（路由也可以传参，在路由配置选项中设置props为一个对象，直接传入即可，组件接收）
-函数模式路由传参：在路由配置项中，设置props属性为一个函数，接收route对象，可进行一些操作，返回一个对象，在组件中接收的就是对象中的键
-History模式： 单页面项目默认使用hash模式（在url上有一个#号），如果使用history模式的话，会自动调用一些history的接口来进行单页面，如果输入的路径没有匹配的，在服务器上则会报404错误，解决方法可以在前端或后端解决404 not found 错误
-路由优先级原则：从前面开始匹配
-导航守卫：
-全局前置守卫：router.beforeEach() 其中接收一个回调函数，函数中有to ,from , next三个参数，注意处理逻辑后一定要加next ，不然其他页面跳转不了。
-全局后置钩子：router.afterEach() 其中只接收to 和 from 两个参数，这个钩子不能阻止跳转，所以用来处理跳转之后的逻辑。
-路由独享守卫:  beforeEnter ，设置在路由配置项中，其为一个函数，其中也接收三个参数，处理进入这个组件路由前的逻辑，注意在末尾要调用next()，不然跳转不了
-组件内守卫： beforeRouterEnter ,同样的接收三个参数，处理进入之前的逻辑，注意在该守卫中是不能随便访问当前组件this的，如果想要使用，则在next中放入一个回调，回调中接收一个参数，该参数就是组件实例；beforeRouterLeave，接收三个参数，用来处理离开组件时的逻辑；beforeRouterUpdate 在组件重用时触发
-路由守卫解析流程：1.导航被触发，2.在失活的组件（即将离开的页面组件）里调用beforeRouterLeave, 3.调用全局的前置守卫 beforeEach, 4.在重用的组件中调用beforeRouterUpdate，5.调用路由独享守卫beforeEnter，6.解析异步路由组件，7.在被激活的组件（即将进入的页面组件）里调用beforeRouterEnter，8.调用beforeResolve，9.导航被确认，10.调用afterEach，11.dom渲染，12.调用next中的回调函数（beforeRouterEnter中的）</p>
+              <p>动态路由传参：在路由配置中，设置props属性为true，在相关组件中设置props接收动态参数，（路由也可以传参，在路由配置选项中设置props为一个对象，直接传入即可，组件接收）<br></p>
+<hr>
+<p>函数模式路由传参：在路由配置项中，设置props属性为一个函数，接收route对象，可进行一些操作，返回一个对象，在组件中接收的就是对象中的键<br></p>
+<hr>
+<p>History模式： 单页面项目默认使用hash模式（在url上有一个#号），如果使用history模式的话，会自动调用一些history的接口来进行单页面，如果输入的路径没有匹配的，在服务器上则会报404错误，解决方法可以在前端或后端解决404 not found 错误<br></p>
+<hr>
+<p>路由优先级原则：从前面开始匹配<br></p>
+<hr>
+<p>导航守卫：<br>
+全局前置守卫：router.beforeEach() 其中接收一个回调函数，函数中有to ,from , next三个参数，注意处理逻辑后一定要加next ，不然其他页面跳转不了。<br>
+全局后置钩子：router.afterEach() 其中只接收to 和 from 两个参数，这个钩子不能阻止跳转，所以用来处理跳转之后的逻辑。<br>
+路由独享守卫:  beforeEnter ，设置在路由配置项中，其为一个函数，其中也接收三个参数，处理进入这个组件路由前的逻辑，注意在末尾要调用next()，不然跳转不了<br>
+组件内守卫： beforeRouterEnter ,同样的接收三个参数，处理进入之前的逻辑，注意在该守卫中是不能随便访问当前组件this的，如果想要使用，则在next中放入一个回调，回调中接收一个参数，该参数就是组件实例；beforeRouterLeave，接收三个参数，用来处理离开组件时的逻辑；beforeRouterUpdate 在组件重用时触发<br></p>
+<hr>
+<p>路由守卫解析流程：1.导航被触发，2.在失活的组件（即将离开的页面组件）里调用beforeRouterLeave, 3.调用全局的前置守卫 beforeEach, 4.在重用的组件中调用beforeRouterUpdate，5.调用路由独享守卫beforeEnter，6.解析异步路由组件，7.在被激活的组件（即将进入的页面组件）里调用beforeRouterEnter，8.调用beforeResolve，9.导航被确认，10.调用afterEach，11.dom渲染，12.调用next中的回调函数（beforeRouterEnter中的）<br></p>
 
             </div>
           </article>
@@ -112,7 +117,7 @@ History模式： 单页面项目默认使用hash模式（在url上有一个#号�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1568432099325" class="no-responsive avatar">
+    <img src="https://wuyanzhiyue.github.io/images/avatar.png?v=1568432560390" class="no-responsive avatar">
     <div class="text-muted"><h2 style='color: pink;'>温故而知新</h2></div>
     <div class="social-container">
       
@@ -184,11 +189,11 @@ History模式： 单页面项目默认使用hash模式（在url上有一个#号�
     </div>
     <div class="row">
       
-        <a href="https://wuyanzhiyue.github.io/tag//tomblog" class="badge secondary">
+        <a href="https://wuyanzhiyue.github.io/tag//tomblog" class="badge success">
           汤姆大叔blog
         </a>
       
-        <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge secondary">
+        <a href="https://wuyanzhiyue.github.io/tag//webpack" class="badge warning">
           web pack
         </a>
       
